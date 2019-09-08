@@ -16,6 +16,7 @@
   "rules": {
     "quotes": ["error", "double"],
     "comma-dangle": ["error", "never"],
-    "object-curly-spacing": ["error", "always"]
+    "object-curly-spacing": ["error", "always"],
+    "new-cap": ["error", { "newIsCap": true }]
   }
 }
