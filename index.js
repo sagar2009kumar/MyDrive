@@ -18,4 +18,7 @@ async function startServer() {
   });
 }
 
+// sudo netstat -lpn |grep :8080 kill
+// sudo fuser -k 3000/tcp
+
 startServer();

@@ -30,6 +30,10 @@
     "graylog2": "^0.2.1",
     "i": "^0.3.6",
     "jsonwebtoken": "^8.5.1",
-    "swagger": "^0.7.5"
+    "mongoose": "^5.7.1",
+    "multer": "^1.4.2",
+    "nodemon": "^1.19.2",
+    "swagger": "^0.7.5",
+    "validator": "^11.1.0"
   }
 }
