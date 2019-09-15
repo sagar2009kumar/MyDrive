@@ -20,7 +20,9 @@ const auth = async (req, res, next) => {
     req.currUser = currUser;
     next(); // to continue the execution
   } catch (e) {
-    res.status(process.env.HTTP_UNAUTHORIZED).send({ error: "Invalid Token" });
+    res
+      .status(process.env.HTTP_STATUS_UNAUTHORIZED)
+      .send({ error: "Invalid Token" });
   }
 };
 

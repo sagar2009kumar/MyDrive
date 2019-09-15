@@ -4,11 +4,11 @@ const userRouter = new express.Router();
 const services = require("../services");
 
 userRouter.post("/user/signup", async (req, res) => {
-  services.user.createUser(req.body, res);
+  services.user.userSignup(req, res);
 });
 
 userRouter.post("/user/login", async (req, res) => {
-  services.user.loginUser(req.body, res);
+  services.user.loginUser(req, res);
 });
 
 userRouter.post("/user/forgotpassword", async (req, res) => {
@@ -19,8 +19,8 @@ userRouter.get("/user/authenticate", async (req, res) => {
   res.status(201).send("User is authenticated");
 });
 
-userRouter.patch("/user/updatepassword", async (req, res) => {
-  res.status(201).send("User password has been reset");
+userRouter.patch("/user/updatepassword", auth, async (req, res) => {
+  services.user.updatePasswordUser(req, res);
 });
 
 userRouter.patch("/user/profileupdate", async (req, res) => {

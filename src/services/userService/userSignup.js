@@ -23,6 +23,8 @@ const getDupKey = message => {
  */
 
 const createUser = (req, res) => {
+  req = req.body;
+
   const currUser = new user({
     userName: req.userName,
     password: req.password,

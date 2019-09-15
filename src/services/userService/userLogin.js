@@ -2,6 +2,8 @@ const user = require("../../models/user");
 
 const loginUser = async (req, res) => {
   try {
+    req = req.body;
+
     const currUser = await user.findUserByCredentials(
       req.loginId,
       req.password
