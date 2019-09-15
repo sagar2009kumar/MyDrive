@@ -10,6 +10,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
+  isActive: {
+    type: Boolean,
+    default: 0
+  },
   password: {
     required: true,
     type: String,
@@ -71,7 +75,8 @@ userSchema.methods.generateJWT = async function() {
   /* signing off a user token */
   const token = jwt.sign(
     { _id: currUser._id.toString() },
-    process.env.JWT_TOKEN_SECRET_KEY
+    process.env.JWT_TOKEN_SECRET_KEY,
+    { expiresIn: "24 hours" }
   );
 
   /* saving the token with the user */
@@ -81,7 +86,14 @@ userSchema.methods.generateJWT = async function() {
   return token;
 };
 
-userSchema.statics.findUserByCredentials = async (loginId, password) => {
+/* function to get the user by the credentials
+ * isValidate is used to validate the password */
+
+userSchema.statics.findUserByCredentials = async (
+  loginId,
+  password,
+  isValidate = true
+) => {
   /* Find by the email or username  */
   const dataToFind = [{ email: loginId }, { userName: loginId }];
   const currUser = await user.findOne({ $or: dataToFind });
@@ -91,11 +103,13 @@ userSchema.statics.findUserByCredentials = async (loginId, password) => {
     throw new Error("User does not exists");
   }
 
-  /* User exists so check the password */
-  const isMatched = await bcrypt.compare(password, currUser.password);
+  if (isValidate) {
+    /* User exists so check the password */
+    const isMatched = await bcrypt.compare(password, currUser.password);
 
-  if (!isMatched) {
-    throw new Error("Unable to login");
+    if (!isMatched) {
+      throw new Error("Unable to login");
+    }
   }
 
   return currUser;

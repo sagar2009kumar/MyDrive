@@ -12,7 +12,7 @@ userRouter.post("/user/login", async (req, res) => {
 });
 
 userRouter.post("/user/forgotpassword", async (req, res) => {
-  res.status(201).send("Email has been sent for further step");
+  services.user.forgotPasswordUser(req, res);
 });
 
 userRouter.get("/user/authenticate", async (req, res) => {
@@ -28,7 +28,7 @@ userRouter.patch("/user/profileupdate", async (req, res) => {
 });
 
 userRouter.delete("/user/delete", auth, async (req, res) => {
-  res.status(200).send("Profile has been deleted");
+  services.user.deleteUser(req, res);
 });
 
 userRouter.patch("/user/pfupdate", async (req, res) => {
