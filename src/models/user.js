@@ -104,9 +104,7 @@ userSchema.methods.generateAuthenticationLink = async function() {
   );
 
   currUser.authToken = token;
-
   await currUser.save();
-
   const link = process.env.APP_CURR_BASE_URL + "user/authenticate/" + token;
 
   return link;

@@ -7,7 +7,7 @@ const sendWelcomeEmail = async currUser => {
   userEmail = currUser.email;
   name = currUser.name;
   const link = await currUser.generateAuthenticationLink();
-  console.log(link);
+
   const msg = {
     from: process.env.SEND_GRID_SENDER_EMAIL,
     to: userEmail,

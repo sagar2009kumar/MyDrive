@@ -31,4 +31,8 @@ userRouter.delete("/user/delete", auth, async (req, res) => {
   services.user.deleteUser(req, res);
 });
 
+userRouter.get("/user/resend/cnf_mail", async (req, res) => {
+  services.user.resendConfirmationMail(req, res);
+});
+
 module.exports = userRouter;

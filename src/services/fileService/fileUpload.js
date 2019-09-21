@@ -1,4 +1,8 @@
 const utilities = require("../../utilities");
-const fileUpload = async function(req, res) {};
+const fileUpload = async function(req, res) {
+  utilities.fileUpload;
+};
+
+fileUpload();
 
 module.exports = fileUpload;

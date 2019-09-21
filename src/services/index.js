@@ -5,6 +5,7 @@ const updatePasswordUser = require("../services/userService/userUpdatePassword")
 const deleteUser = require("../services/userService/userDelete");
 const forgotPasswordUser = require("../services/userService/userForgotPassword");
 const authenticateUser = require("../services/userService/userAuthenticate");
+const resendConfirmationMail = require("../services/userService/userResendConfirmation");
 
 module.exports = {
   user: {
@@ -13,6 +14,7 @@ module.exports = {
     updatePasswordUser,
     deleteUser,
     forgotPasswordUser,
-    authenticateUser
+    authenticateUser,
+    resendConfirmationMail
   }
 };
