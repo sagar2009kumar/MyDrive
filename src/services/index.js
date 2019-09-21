@@ -4,6 +4,7 @@ const loginUser = require("../services/userService/userLogin");
 const updatePasswordUser = require("../services/userService/userUpdatePassword");
 const deleteUser = require("../services/userService/userDelete");
 const forgotPasswordUser = require("../services/userService/userForgotPassword");
+const authenticateUser = require("../services/userService/userAuthenticate");
 
 module.exports = {
   user: {
@@ -11,6 +12,7 @@ module.exports = {
     loginUser,
     updatePasswordUser,
     deleteUser,
-    forgotPasswordUser
+    forgotPasswordUser,
+    authenticateUser
   }
 };

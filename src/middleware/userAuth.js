@@ -2,18 +2,18 @@
 const jwt = require("jsonwebtoken");
 const user = require("../models/user");
 
-const auth = async (req, res, next) => {
+const userAuth = async (req, res, next) => {
   try {
-    const token = req.header("Authorization").replace("Bearer ", "");
+    const token = req.params.token;
     const decoded = jwt.verify(token, process.env.JWT_TOKEN_SECRET_KEY);
     const currUser = await user.findOne({
       _id: decoded._id,
-      "tokens.token": token
+      authToken: token
     });
 
     if (!currUser) {
       /* If the user is not found */
-      throw new Error("User not found");
+      throw new Error("User not found Or Link has been expired");
     }
 
     /* assigning the user to the request body */
@@ -26,4 +26,4 @@ const auth = async (req, res, next) => {
   }
 };
 
-module.exports = auth;
+module.exports = userAuth;

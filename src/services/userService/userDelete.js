@@ -1,3 +1,5 @@
+const emailService = require("../emailService");
+
 const deleteUser = async (req, res) => {
   const currUser = req.currUser;
 

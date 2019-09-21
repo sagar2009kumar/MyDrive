@@ -23,7 +23,7 @@ const loginUser = async (req, res) => {
       res.status(process.env.HTTP_STATUS_BAD_REQUEST).send({
         code: process.env.APP_UNPROCESSABLE_ERROR,
         message: "User is not active.Please activate your account.",
-        errorType: process.env.APP_UNPROCESSABLE_ERROR
+        errorType: process.env.APP_UNPROCESSABLE_ERRORTYPE
       });
     }
   } catch (error) {

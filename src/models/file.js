@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
-const file = mongoose.model("file", {
+// eslint-disable-next-line new-cap
+const fileSchema = mongoose.Schema({
   fileName: {
     type: String,
     required: true
@@ -34,5 +35,7 @@ const file = mongoose.model("file", {
     }
   ]
 });
+
+const file = mongoose.model("file", fileSchema);
 
 module.exports = file;

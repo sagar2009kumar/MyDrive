@@ -2,6 +2,7 @@
 /* eslint-disable max-len */
 /* eslint-disable indent */
 const user = require("../../models/user");
+const emailService = require("../emailService");
 
 /**
  * function to get the duplicate key if present in the database
@@ -42,6 +43,9 @@ const createUser = (req, res) => {
         userName: req.userName,
         email: req.email
       });
+
+      /* send the welcome email */
+      emailService.user.sendWelcomeEmail(currUser);
     })
     .catch(error => {
       if (error.code == 11000) {

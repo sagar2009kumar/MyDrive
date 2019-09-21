@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: 0
   },
+  profilePic: {
+    type: String,
+    default: ""
+  },
   password: {
     required: true,
     type: String,
@@ -35,6 +39,10 @@ const userSchema = new mongoose.Schema({
     required: true,
     type: String,
     trim: true
+  },
+  authToken: {
+    default: "",
+    type: String
   },
   tokens: [
     {
@@ -84,6 +92,24 @@ userSchema.methods.generateJWT = async function() {
   await currUser.save();
 
   return token;
+};
+
+userSchema.methods.generateAuthenticationLink = async function() {
+  const currUser = this;
+  /* signing off a user token */
+  const token = jwt.sign(
+    { _id: currUser._id.toString() },
+    process.env.JWT_TOKEN_SECRET_KEY,
+    { expiresIn: "15 minutes" }
+  );
+
+  currUser.authToken = token;
+
+  await currUser.save();
+
+  const link = process.env.APP_CURR_BASE_URL + "user/authenticate/" + token;
+
+  return link;
 };
 
 /* function to get the user by the credentials
